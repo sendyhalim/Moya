@@ -1,5 +1,6 @@
 import Foundation
 import ReactiveCocoa
+//import Moya // script will enable and disable this import
 
 /// Subclass of MoyaProvider that returns SignalProducer instances when requests are made. Much better than using completion closures.
 public class ReactiveCocoaMoyaProvider<Target where Target: TargetType>: MoyaProvider<Target> {
