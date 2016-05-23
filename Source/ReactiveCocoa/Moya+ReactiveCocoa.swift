@@ -38,7 +38,7 @@ public class ReactiveCocoaMoyaProvider<Target where Target: TargetType>: MoyaPro
         }
     }
 
-    override func stubRequest(target: Target, request: NSURLRequest, completion: Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
+    override public func stubRequest(target: Target, request: NSURLRequest, completion: Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
         guard let stubScheduler = self.stubScheduler else {
             return super.stubRequest(target, request: request, completion: completion, endpoint: endpoint, stubBehavior: stubBehavior)
         }

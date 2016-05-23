@@ -184,7 +184,7 @@ public class MoyaProvider<Target: TargetType> {
     
     /// When overriding this method, take care to `notifyPluginsOfImpendingStub` and to perform the stub using the `createStubFunction` method.
     /// Note: this was previously in an extension, however it must be in the original class declaration to allow subclasses to override.
-    internal func stubRequest(target: Target, request: NSURLRequest, completion: Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
+    public func stubRequest(target: Target, request: NSURLRequest, completion: Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
         let cancellableToken = CancellableToken { }
         notifyPluginsOfImpendingStub(request, target: target)
         let plugins = self.plugins
@@ -251,9 +251,9 @@ public extension MoyaProvider {
     }
 }
 
-internal extension MoyaProvider {
+public extension MoyaProvider {
     
-    func sendRequest(target: Target, request: NSURLRequest, completion: Moya.Completion) -> CancellableToken {
+    public final func sendRequest(target: Target, request: NSURLRequest, completion: Moya.Completion) -> CancellableToken {
         let alamoRequest = manager.request(request)
         let plugins = self.plugins
         
@@ -274,7 +274,7 @@ internal extension MoyaProvider {
     }
     
     /// Creates a function which, when called, executes the appropriate stubbing behavior for the given parameters.
-    internal final func createStubFunction(token: CancellableToken, forTarget target: Target, withCompletion completion: Moya.Completion, endpoint: Endpoint<Target>, plugins: [PluginType]) -> (() -> ()) {
+    public final func createStubFunction(token: CancellableToken, forTarget target: Target, withCompletion completion: Moya.Completion, endpoint: Endpoint<Target>, plugins: [PluginType]) -> (() -> ()) {
         return {
             if (token.canceled) {
                 let error = Moya.Error.Underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled, userInfo: nil))
@@ -297,7 +297,7 @@ internal extension MoyaProvider {
     }
     
     /// Notify all plugins that a stub is about to be performed. You must call this if overriding `stubRequest`.
-    internal final func notifyPluginsOfImpendingStub(request: NSURLRequest, target: Target) {
+    public final func notifyPluginsOfImpendingStub(request: NSURLRequest, target: Target) {
         let alamoRequest = manager.request(request)
         plugins.forEach { $0.willSendRequest(alamoRequest, target: target) }
     }

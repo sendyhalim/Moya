@@ -25,12 +25,12 @@ public final class CancellableToken: Cancellable , CustomDebugStringConvertible 
         cancelAction()
     }
     
-    init(action: () -> Void){
+    public init(action: () -> Void){
         self.cancelAction = action
         self.request = nil
     }
     
-    init(request : Request){
+    public init(request : Request){
         self.request = request
         self.cancelAction = {
             request.cancel()
