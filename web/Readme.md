@@ -12,6 +12,8 @@ Here're the rasterized versions of the image assets used by Moya.
 | <svg width="20" height="20"> <rect width="20" height="20" style="fill:#FC1892;" /></svg> | #FC1892 | Pink |
 | <svg width="20" height="20"> <rect width="20" height="20" style="fill:#B826FB;" /></svg> | #B826FB | Purple |
 
+<svg width="20" height="20"> <rect width="20" height="20" style="fill:#B826FB;" /></svg>
+
 ## Logo
 
 ![Logo](moya_logo_github.png)
